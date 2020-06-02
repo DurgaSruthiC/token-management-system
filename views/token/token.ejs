@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Page Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    </head>
+    <div id="downloadToken">
+        <h2>U have successfully booked token</h2>
+        <h3>click the button to see the token</h3>
+
+        <table>
+            <% Object.keys(data[0]).forEach(key => { %>
+            <tr>
+                <td><label><%= (key)%> is </label></td>
+                <td><%= data[0][key]%>
+                    <% }) %>
+                </td>
+            </tr>
+        </table>
+      </div>
+      
+    <button type="button" id="export">Export To Pdf</button>
+    <script>
+	
+    	var doc = new jsPDF();
+        var specialElementHandlers = {
+            '#editor': function (element, renderer) {
+            return true;
+            }
+        };
+
+        $('#export').click(function () {
+            doc.fromHTML($('#downloadToken').html(), 15, 15, {
+                'width': 170,
+                'elementHandlers': specialElementHandlers
+            });
+            doc.save('sample-file.pdf');
+        });
+
+    </script> 
+</html>

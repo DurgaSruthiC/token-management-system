@@ -1,0 +1,37 @@
+<script type="text/javascript">
+    
+    function validateForm(){
+        if(document.forms["myForm"]["patientphone"].value==""||document.forms["myForm"]["token"].value==""||document.forms["myForm"]["dateCol"].value==""){
+            alert("Fill all the required fields");
+            return false;
+        }
+    }
+</script>
+
+    <!-- <form method="post" action="/customers/addToken"> -->
+<form method="post" action="/token/cancelToken">
+    <h3>Cancel Token</h3>
+        <tr>
+            <td class="label">Enter Phone number</td>
+            <td><input type="text" name="phoneNo" required></td>
+        </tr>
+        <tr>
+            <td class="label">Select Date</td>
+            <td><input type="date" id="dateCol" name="dateCol" required></td>
+        </tr>
+        <tr>
+            <td class="radio" required></td>
+            <td>
+                <p>Select Session</p>
+                <input type="radio" id="morning" name="token" value="morning" onclick="test()">
+                <label for="morning">Morning</label>                
+                <br>
+
+                <input type="radio" id="evening" name="token" value="evening" onclick="test1()">
+                <label for="evening">Evening</label>
+                
+                <br>
+            </td>
+        </tr>
+    <button type="submit">save</button>
+</form>

@@ -1,0 +1,66 @@
+<script type="text/javascript">
+    function test() {
+        if(eve.style.display!="none"){
+            eve.style.display="none";
+        }
+        var morning = document.getElementById("morning");
+        var mrng = document.getElementById("mrng");
+        mrng.style.display = morning.checked ? "block" : "none";
+    }
+    function test1() {
+        if(mrng.style.display!="none"){
+            mrng.style.display ="none";
+        }
+        var evening = document.getElementById("evening");
+        var eve = document.getElementById("eve");
+        eve.style.display = evening.checked ? "block" : "none";
+    }
+    function validateForm(){
+        if(document.forms["myForm"]["patientphone"].value==""||document.forms["myForm"]["token"].value==""||document.forms["myForm"]["dateCol"].value==""){
+            alert("Fill all the required fields");
+            return false;
+        }
+    }
+</script>
+
+    <!-- <form method="post" action="/customers/addToken"> -->
+<form method="post" action="/token/changeToken">
+    <h3>Change Token</h3>
+        <tr>
+            <td class="label">Enter Phone number</td>
+            <td><input type="text" name="phoneNo" required></td>
+        </tr>
+        <tr>
+            <td class="label">Select Date</td>
+            <td><input type="date" id="dateCol" name="dateCol" required></td>
+        </tr>
+        <tr>
+            <td class="radio" required></td>
+            <td>
+                <p>Select Session</p>
+                <input type="radio" id="morning" name="token" value="morning" onclick="test()">
+                <label for="morning">Morning</label>
+                <label for="mrng">   
+                    <select id="mrng" name="mrng" style="display: none">
+                        <option value="9:45 A.M.-10:30 A.M.">9:45 A.M.-10:30 A.M.</option>
+                        <option value="10:30 A.M.-11:15 A.M.">10:30 A.M.-11:15 A.M.</option>
+                        <option value="11:15 A.M.-12 P.M.">11:15 A.M.-12 P.M.</option>
+                        <option value="12 P.M.-12:45 P.M.">12 P.M.-12:45 P.M.</option>
+                        <option value="12:45 P.M. -1:30 P.M.">12:45 P.M. -1:30 P.M.</option>
+                      </select></label>
+                
+                <br>
+                <input type="radio" id="evening" name="token" value="evening" onclick="test1()">
+                <label for="evening">Evening</label>
+                <select id="eve" name="eve" style="display: none">
+                    <option value="5:45 P.M. -6:30 P.M.">5:45 P.M. -6:30 P.M.</option>
+                    <option value="6:30 P.M.-7:15 P.M.">6:30 P.M.-7:15 P.M.</option>
+                    <option value="7 P.M. -15-8 P.M.">7 P.M. -15-8 P.M.</option>
+                    <option value="8 P.M.-8:45 P.M.">8 P.M.-8:45 P.M.</option>
+                  </select>
+                
+                <br>
+            </td>
+        </tr>
+    <button type="submit">save</button>
+</form>

@@ -1,0 +1,102 @@
+<html>
+<head>
+    <style>
+        .center {
+            text-align: center
+        }
+    </style>
+    <script type="text/javascript">
+        function test() {
+            if(eve.style.display!="none"){
+                eve.style.display="none";
+            }
+            var morning = document.getElementById("morning");
+            var mrng = document.getElementById("mrng");
+            mrng.style.display = morning.checked ? "block" : "none";
+        }
+        function test1() {
+            if(mrng.style.display!="none"){
+                mrng.style.display ="none";
+            }
+            var evening = document.getElementById("evening");
+            var eve = document.getElementById("eve");
+            eve.style.display = evening.checked ? "block" : "none";
+        }
+        function validateForm(){
+            if(document.forms["myForm"]["patientname"].value==""||document.forms["myForm"]["patientphone"].value==""||document.forms["myForm"]["token"].value==""||document.forms["myForm"]["dateCol"].value==""){
+                alert("Fill all the required fields");
+                return false;
+            }
+        }
+        
+    </script>
+    
+
+</head>
+
+<h2 class="center">Form to get Doctor Appointment</h2>
+<div class="page-data">
+    <form name="myForm" method="post" action="/token/addToken" onsubmit="return validateForm()">
+        <!-- <script src="/js/test-js.js"></script> -->
+        <table cellpadding="11" class="center">
+            <tr>
+                <td class="label">PatientName</td>
+                <td><input type="text" name="patientname" required /></td>
+            </tr>
+            <tr>
+                <td class="label">PatientPhone</td>
+                <!-- /(7|8|9)\d{9}/ means the phno will start with 7 or 8 or 9 and follows 9 digits  ^\d{10}$ -->
+                <td><input type="text" name="patientphone" pattern="^\d{10}$" required /></td>
+            </tr>
+            
+            
+            <tr>
+                <td class="radio"></td>
+                <td>
+                    <p>Please select:</p>
+                    <label for="morning">
+                    <input type="radio" id="morning" name="token" value="morning" onclick="test()" />
+                    Morning
+                        <td><label for="mrng">   
+                       <select id="mrng" name="mrng" style="display: none">
+                           <option value="9:45 A.M.-10:30 A.M.">9:45 A.M.-10:30 A.M.</option>
+                           <option value="10:30 A.M.-11:15 A.M.">10:30 A.M.-11:15 A.M.</option>
+                           <option value="11:15 A.M.-12 P.M.">11:15 A.M.-12 P.M.</option>
+                           <option value="12 P.M.-12:45 P.M.">12 P.M.-12:45 P.M.</option>
+                           <option value="12:45 P.M. -1:30 P.M.">12:45 P.M. -1:30 P.M.</option>
+                         </select></label></td>
+                         
+                      <td>    
+                    <label for="evening">
+                    <input type="radio" id="evening" name="token" value="evening" onclick="test1()">
+                    Evening
+                       <select id="eve" name="eve" style="display: none">
+                           <option value="5:45 P.M. -6:30 P.M.">5:45 P.M. -6:30 P.M.</option>
+                           <option value="6:30 P.M.-7:15 P.M.">6:30 P.M.-7:15 P.M.</option>
+                           <option value="7:15 P.M. -8 P.M.">7:15 P.M. -8 P.M.</option>
+                           <option value="8 P.M.-8:45 P.M.">8 P.M. -8:45 P.M.</option>
+                           <option value="8:45 P.M.-9:30 P.M.">8:45 P.M.-9:30 P.M.</option>
+                         </select>
+                    </label>                        
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label">Select Date</td>
+                <td><input type="date" id="dateCol" name="dateCol"></td>
+            </tr>
+            <tr>
+                  
+            <tr id="test"></tr>
+            <tr>
+                <td class="label"></td>
+                <td>
+                    <button type="submit">Save</button>
+                    <button type="button" onClick="cancelAdd()">Cancel</button>
+                </td>
+            </tr>
+            
+        </table>
+    </form>
+</div>
+</html>
